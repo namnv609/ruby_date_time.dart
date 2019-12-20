@@ -1,0 +1,11 @@
+name: ruby_date_time
+description: Extend some functions for DateTime class, powered by extension
+version: 0.0.1
+author: NamNV609 <namnv609@gmail.com>
+homepage: https://github.com/namnv609/ruby_date_time.dart
+
+environment:
+  sdk: ">=2.6.0 <3.0.0"
+
+dev_dependencies:
+  test: ^1.9.0
