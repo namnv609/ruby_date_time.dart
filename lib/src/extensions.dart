@@ -1,0 +1,3 @@
+extension RubyDateTime on DateTime {
+
+}
