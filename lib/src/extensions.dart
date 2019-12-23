@@ -1,6 +1,22 @@
 extension RubyDateTime on DateTime {
   static const int monthsPerQuarter = 3;
 
+  /// Returns a List<DateTime> representing the whole day of the start date and end date.
+  List<DateTime> _getDateTimeRange(DateTime startDate, DateTime endDate) {
+    if (startDate.isAfter(endDate)) {
+      return [];
+    }
+
+    List<DateTime> allDates = [];
+
+    do {
+      allDates.add(startDate);
+      startDate = startDate.add(Duration(days: 1));
+    } while (!startDate.isAfter(endDate));
+
+    return allDates;
+  }
+
   /// Returns a new DateTime where one or more of the elements have been changed according to the options parameter.
   ///
   /// Default, time will be keep original (in case you don't passed `hour:`, `minute:` and `second:`).
@@ -124,4 +140,31 @@ extension RubyDateTime on DateTime {
   ///
   /// DateTime objects will have a time set to 23:59:59.
   DateTime endOfYear() => this.change(month: 12).endOfMonth();
+
+  /// Returns a List representing the whole day of the current date/time.
+  List<DateTime> allDay() {
+    return [this.startOfDay()];
+  }
+
+  /// Returns a `List<DateTime>` representing the whole week of the current date/time.
+  ///
+  /// Week is assumed to start on Monday.
+  List<DateTime> allWeek() {
+    return this._getDateTimeRange(this.startOfWeek(), this.endOfWeek());
+  }
+
+  /// Returns a `List<DateTime>` representing the whole month of the current date/time.
+  List<DateTime> allMonth() {
+    return this._getDateTimeRange(this.startOfMonth(), this.endOfMonth());
+  }
+
+  /// Returns a `List<DateTime>` representing the whole quarter of the current date/time.
+  List<DateTime> allQuarter() {
+    return this._getDateTimeRange(this.startOfQuarter(), this.endOfQuarter());
+  }
+
+  /// Returns a `List<DateTime>` representing the whole year of the current date/time.
+  List<DateTime> allYear() {
+    return this._getDateTimeRange(this.startOfYear(), this.endOfYear());
+  }
 }

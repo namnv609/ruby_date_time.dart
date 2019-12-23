@@ -87,4 +87,30 @@ void main() {
       expect(dateTime.endOfYear(), endOfYearDateTime);
     });
   });
+
+  group('All', () {
+    final int daysOnDecember = 31;
+    final int daysOnLastQuarter = 92;
+    final int daysOnCurrentYear = 365;
+
+    test('day', () {
+      expect(dateTime.allDay(), [DateTime(2019, 12, 11)]);
+    });
+
+    test('week', () {
+      expect(dateTime.allWeek().length, DateTime.daysPerWeek);
+    });
+
+    test('month', () {
+      expect(dateTime.allMonth().length, daysOnDecember);
+    });
+
+    test('quarter', () {
+      expect(dateTime.allQuarter().length, daysOnLastQuarter);
+    });
+
+    test('year', () {
+      expect(dateTime.allYear().length, daysOnCurrentYear);
+    });
+  });
 }
