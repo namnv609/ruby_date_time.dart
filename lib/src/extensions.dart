@@ -167,4 +167,13 @@ extension RubyDateTime on DateTime {
   List<DateTime> allYear() {
     return this._getDateTimeRange(this.startOfYear(), this.endOfYear());
   }
+
+  /// Returns true if the date time is in the past
+  bool isPast() => this.isBefore(DateTime.now());
+
+  /// Return true if the date time is in the future
+  bool isFuture() => this.isAfter(DateTime.now());
+
+  /// Returns `true` if year is a leap year.
+  bool isLeapYear() => (this.year % 4 == 0) && (this.year % 100 != 0 || this.year % 400 == 0);
 }
