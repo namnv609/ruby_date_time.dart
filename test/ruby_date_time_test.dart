@@ -113,4 +113,22 @@ void main() {
       expect(dateTime.allYear().length, daysOnCurrentYear);
     });
   });
+
+  group('Is', () {
+    test('past', () {
+      expect(DateTime(1900, 1, 1).isPast(), true);
+    });
+
+    test('future', () {
+      expect(DateTime(9999, 12, 31).isFuture(), true);
+    });
+
+    test('not leap year', () {
+      expect(dateTime.isLeapYear(), false);
+    });
+
+    test('leap year', () {
+      expect(DateTime(2020, 1, 1).isLeapYear(), true);
+    });
+  });
 }
